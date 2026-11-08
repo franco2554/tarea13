@@ -4,6 +4,6 @@
 
 $router->get('/estado', 'EstadoController@ver');
 
-
-// Próxima clase: login
-// $router->post('/login', 'AuthController@login');
+// Vehiculos
+$router->get('/vehiculos', 'VehiculoController@listar');
+$router->get('/vehiculos/:id', 'VehiculoController@ver');
