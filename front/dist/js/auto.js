@@ -63,6 +63,11 @@ async function cargarAuto() {
 formAuto.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (!formAuto.checkValidity()) {
+        formAuto.classList.add("was-validated");
+        return;
+    }
+
     const datos = {
         id_marca: inputMarca.value,
         modelo: inputModelo.value.trim(),
@@ -74,8 +79,10 @@ formAuto.addEventListener("submit", async (e) => {
     const respuesta = await API.request("/vehiculos/" + idAuto, datos);
 
     if (respuesta.status === "ok") {
+        formAuto.classList.remove("was-validated");
         document.querySelector("#alertaGuardado").classList.remove("d-none");
 
+        // actualizo la info de la izquierda con lo que quedo guardado
         const auto = await API.request("/vehiculos/" + idAuto);
         mostrarAuto(auto.vehiculo);
     }

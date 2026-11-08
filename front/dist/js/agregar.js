@@ -18,6 +18,11 @@ async function cargarMarcas() {
 formNuevo.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (!formNuevo.checkValidity()) {
+        formNuevo.classList.add("was-validated");
+        return;
+    }
+
     const datos = {
         id_marca: inputMarca.value,
         modelo: document.querySelector("#modelo").value.trim(),
