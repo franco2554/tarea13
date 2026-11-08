@@ -26,4 +26,30 @@ class VehiculoModel {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function guardar($datos) {
+        $stmt = $this->db->prepare('INSERT INTO VEHICULOS (id_marca, modelo, anio, precio, estado)
+                                    VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([
+            $datos['id_marca'],
+            $datos['modelo'],
+            $datos['anio'],
+            $datos['precio'],
+            $datos['estado']
+        ]);
+        return $this->db->lastInsertId();
+    }
+
+    public function actualizar($id, $datos) {
+        $stmt = $this->db->prepare('UPDATE VEHICULOS SET id_marca = ?, modelo = ?, anio = ?, precio = ?, estado = ?
+                                    WHERE id_vehiculo = ?');
+        return $stmt->execute([
+            $datos['id_marca'],
+            $datos['modelo'],
+            $datos['anio'],
+            $datos['precio'],
+            $datos['estado'],
+            $id
+        ]);
+    }
 }

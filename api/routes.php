@@ -7,3 +7,8 @@ $router->get('/estado', 'EstadoController@ver');
 // Vehiculos
 $router->get('/vehiculos', 'VehiculoController@listar');
 $router->get('/vehiculos/:id', 'VehiculoController@ver');
+$router->post('/vehiculos', 'VehiculoController@crear');
+$router->put('/vehiculos/:id', 'VehiculoController@actualizar');
+
+// Marcas
+$router->get('/marcas', 'MarcaController@listar');
