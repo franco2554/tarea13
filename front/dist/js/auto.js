@@ -76,7 +76,7 @@ formAuto.addEventListener("submit", async (e) => {
         estado: inputEstado.value
     };
 
-    const respuesta = await API.request("/vehiculos/" + idAuto, datos);
+    const respuesta = await API.request("/vehiculos/" + idAuto, "PUT", datos);
 
     if (respuesta.status === "ok") {
         formAuto.classList.remove("was-validated");
